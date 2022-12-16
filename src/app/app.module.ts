@@ -20,8 +20,8 @@ import { AuthModule } from '@auth0/auth0-angular';
     AppRoutingModule,
      // Import the module into the application, with configuration
      AuthModule.forRoot({
-      domain: 'estadistica.auth0.com',
-      clientId: 'knBYg5PAoX8zjj7uG9ShFEMQuqtAUGAQ'
+      domain: 'dev-gxv4jklx7zdylsmq.us.auth0.com',
+      clientId: 'oHVj8bk3xelOOhvymdhpFQURPkv7pToe'
     }),
   ],
   providers: [],
