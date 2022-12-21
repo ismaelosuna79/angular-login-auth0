@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
-import { firebaseConfig } from '../environments/environment';
+import { firebaseConfig } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
