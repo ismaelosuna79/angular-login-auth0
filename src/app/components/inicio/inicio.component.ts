@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';
 import { AuthServiceFB } from 'src/app/auth.service';
-
+declare var FB: any;
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -14,11 +14,32 @@ export class InicioComponent implements OnInit {
   constructor(public auth: AuthService, private router: Router, private http: HttpClient, public authServices: AuthServiceFB) { }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticaed => {
+    
+    (window as any).fbAsyncInit = function() {
+      FB.init({
+        appId      : '394951114363257',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.1'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0] as any;
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s) as any; 
+       js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
+     this.auth.isAuthenticated$.subscribe(isAuthenticaed => {
       if(isAuthenticaed) {
         this.router.navigate(['/dashboard'])
       }
     })
+
   }
 
   login() {
@@ -28,7 +49,7 @@ export class InicioComponent implements OnInit {
   }
 
   loginF(){
-    this.http.get("https://apiservice.onrender.com/api/facebook/redirect").subscribe(resp=>{
+    this.http.get("http://localhost:3000/api/facebook/redirect").subscribe(resp=>{
       console.log(resp);
     })
   }
