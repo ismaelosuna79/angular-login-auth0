@@ -22,7 +22,9 @@ export class InicioComponent implements OnInit {
   }
 
   login() {
-    this.auth.loginWithRedirect()
+    this.auth.loginWithRedirect().subscribe(resp=>{
+      console.log(resp)
+    })
   }
 
   loginF(){
