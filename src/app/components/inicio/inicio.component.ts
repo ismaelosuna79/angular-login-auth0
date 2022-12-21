@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { HttpClient } from '@angular/common/http';
+import { AuthServiceFB } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-inicio',
@@ -9,7 +11,7 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router, private http: HttpClient, public authServices: AuthServiceFB) { }
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticaed => {
@@ -21,6 +23,12 @@ export class InicioComponent implements OnInit {
 
   login() {
     this.auth.loginWithRedirect()
+  }
+
+  loginF(){
+    this.http.get("https://apiservice.onrender.com/api/facebook/redirect").subscribe(resp=>{
+      console.log(resp);
+    })
   }
 
 }

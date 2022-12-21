@@ -8,6 +8,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { firebaseConfig } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -18,11 +23,16 @@ import { AuthModule } from '@auth0/auth0-angular';
   imports: [
     BrowserModule,
     AppRoutingModule,
-     // Import the module into the application, with configuration
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
      AuthModule.forRoot({
       domain: 'dev-gxv4jklx7zdylsmq.us.auth0.com',
       clientId: 'oHVj8bk3xelOOhvymdhpFQURPkv7pToe'
     }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
