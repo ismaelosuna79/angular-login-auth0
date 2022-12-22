@@ -30,7 +30,7 @@ export class AuthServiceFB {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        console.log(result.credential);
+        console.log(result.user?.providerData);
         console.log('You have been successfully logged in!');
       })
       .catch((error) => {
@@ -41,7 +41,7 @@ export class AuthServiceFB {
   fbLogin() {
     return new Promise((resolve, reject) => {
       FB.login((result:any) => {
-        console.log(result.authResponse.accessToken)
+        console.log(result)
         // if (result.authResponse) {
         //   return this.http.get(`http://localhost:3000/api/facebook/redirect`)
         //       .toPromise()
@@ -56,7 +56,12 @@ export class AuthServiceFB {
         // } else {
         //   reject();
         // }
-      }, {scope: 'public_profile,email'})
+      }, {scope: 'public_profile, email, instagram_basic, pages_show_list, ads_management,business_management, instagram_content_publish, pages_read_engagement'})
+      //permisos para publicar
+      //ads_management, business_management, instagram_content_publish, pages_read_engagement, instagram_basic
+
+      //Permisos normales facebook
+      //public_profile,email, instagram_basic,
     });
   }
 }
