@@ -34,11 +34,11 @@ export class InicioComponent implements OnInit {
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
 
-     this.auth.isAuthenticated$.subscribe(isAuthenticaed => {
-      if(isAuthenticaed) {
-        this.router.navigate(['/dashboard'])
-      }
-    })
+    //  this.auth.isAuthenticated$.subscribe(isAuthenticaed => {
+    //   if(isAuthenticaed) {
+    //     this.router.navigate(['/dashboard'])
+    //   }
+    // })
 
   }
 
